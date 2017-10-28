@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import InsuranceForm from "./InsuranceForm";
 
 class App extends Component {
   render() {
@@ -11,6 +12,8 @@ class App extends Component {
           <h1 className="App-title">Welcome to merch-it</h1>
         </header>
         <p className="App-intro">Insurances for the wandering travelers</p>
+
+        <InsuranceForm />
       </div>
     );
   }
