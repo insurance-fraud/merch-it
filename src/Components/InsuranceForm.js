@@ -7,7 +7,7 @@ import { Form,
   InputGroup,
   Button
 } from 'react-bootstrap';
-import FieldGroup from './components/FieldGroup';
+import FieldGroup from './FieldGroup';
 
 class InsuranceForm extends Component {
   render() {

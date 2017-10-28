@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.png';
 import './App.css';
 import { Jumbotron, Grid } from 'react-bootstrap';
-import InsuranceForm from "./InsuranceForm";
+import InsuranceForm from "./Components/InsuranceForm";
 
 class App extends Component {
   render() {
