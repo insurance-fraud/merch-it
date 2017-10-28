@@ -10,6 +10,9 @@
     "react-dom": "^16.0.0",
     "react-scripts": "1.0.14"
   },
+  "optionalDependencies": {
+    "fsevents": "*"
+  },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
       "prettier --single-quote --write",
