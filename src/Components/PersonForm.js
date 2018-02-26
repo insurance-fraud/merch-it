@@ -20,7 +20,6 @@ class PersonForm extends Component {
     const ageRangeOptions = ['under 18', '18-60', 'over 60'];
     const insuranceAmounts = [10000, 30000, 50000, 100000];
 
-    console.log(Panel.Heading);
     return (
       <div className="col-lg-4">
         <Panel>
