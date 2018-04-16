@@ -1,7 +1,7 @@
 version: '2'
 services:
-  web:
+  merch-it:
     build: .
-    command: npm start
+    command: yarn start
     ports:
       - "3000:3000"
