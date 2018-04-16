@@ -17,8 +17,8 @@ EXPOSE 5000
 # Copying package.json and npm-shrinkwrap.json so it hits the Docker cache if
 # nothing has been changed in those files.
 COPY package.json package.json
-COPY npm-shrinkwrap.json npm-shrinkwrap.json
-RUN npm install
+COPY yarn.lock yarn.lock
+RUN yarn install
 
 # Copy all local files into the image.
 COPY . .
