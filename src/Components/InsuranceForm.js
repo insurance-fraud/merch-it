@@ -39,7 +39,7 @@ class InsuranceForm extends Component {
     if (value === '') {
       totalNumberOfPersons = 1;
     } else {
-      totalNumberOfPersons = parseInt(value) + 1;
+      totalNumberOfPersons = parseInt(value, 0) + 1;
     }
 
     this.setState({
