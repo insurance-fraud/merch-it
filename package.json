@@ -6,9 +6,11 @@
     "bootstrap": "^3.3.7",
     "lodash": "^4.17.4",
     "react": "^16.0.0",
-    "react-bootstrap": "^0.31.5",
+    "react-bootstrap": "^0.32.0",
     "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14"
+    "react-redux": "^5.0.7",
+    "react-scripts": "1.0.14",
+    "redux": "^3.7.2"
   },
   "optionalDependencies": {
     "fsevents": "*"
