@@ -22,7 +22,7 @@ class InsuranceForm extends Component {
       to: null,
       region: '',
       totalNumberOfPersons: 1,
-      numberOfPersons: 0
+      numberOfPersons: null
     };
 
     this.handleNumberOfPersonsChange = this.handleNumberOfPersonsChange.bind(

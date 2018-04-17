@@ -21,7 +21,7 @@ class PersonForm extends Component {
     const insuranceAmounts = [10000, 30000, 50000, 100000];
 
     return (
-      <div className="col-lg-4" style={{ margin: '0 auto' }}>
+      <div className="col-lg-4">
         <Panel>
           <Panel.Heading>
             {this.state.fullName || `#${this.props.personNumber} traveller`}
