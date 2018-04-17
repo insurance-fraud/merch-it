@@ -7,6 +7,8 @@ import {
   InputGroup,
   Button
 } from 'react-bootstrap';
+import { DateRangePicker } from 'react-dates';
+import moment from 'moment';
 
 import FieldGroup from './FieldGroup';
 import PersonForm from './PersonForm';
@@ -16,8 +18,8 @@ class InsuranceForm extends Component {
     super();
 
     this.state = {
-      from: Date.now(),
-      to: Date.now(),
+      from: null,
+      to: null,
       region: '',
       totalNumberOfPersons: 1,
       numberOfPersons: 0
@@ -52,30 +54,17 @@ class InsuranceForm extends Component {
     return (
       <div>
         <Form inline>
-          <FormGroup>
-            <InputGroup>
-              <InputGroup.Button>
-                <Button>From</Button>
-              </InputGroup.Button>
-              <FormControl
-                type="text"
-                value={this.state.from}
-                onChange={event => this.setState({ from: event.target.value })}
-              />
-            </InputGroup>
-          </FormGroup>{' '}
-          <FormGroup>
-            <InputGroup>
-              <InputGroup.Button>
-                <Button>To</Button>
-              </InputGroup.Button>
-              <FormControl
-                type="text"
-                value={this.state.from}
-                onChange={event => this.setState({ from: event.target.value })}
-              />
-            </InputGroup>
-          </FormGroup>
+          <DateRangePicker
+            startDate={this.state.from}
+            startDateId={'insurance-start-date'}
+            endDate={this.state.to}
+            endDateId={'insurance-end-date'}
+            onDatesChange={({ startDate, endDate }) =>
+              this.setState({ from: startDate, to: endDate })
+            }
+            focusedInput={this.state.focusedInput}
+            onFocusChange={focusedInput => this.setState({ focusedInput })}
+          />
         </Form>
         <br />
 
@@ -101,9 +90,15 @@ class InsuranceForm extends Component {
 
         <h3>Information about travellers</h3>
 
-        {_.range(this.state.totalNumberOfPersons).map(key => (
-          <PersonForm key={key} personNumber={key} />
-        ))}
+        <div className="col-lg-12">
+          {_.range(this.state.totalNumberOfPersons).map(key => (
+            <PersonForm key={key} personNumber={key} />
+          ))}
+        </div>
+
+        <div className="container">
+          <Button bsStyle="success">Checkout</Button>
+        </div>
       </div>
     );
   }

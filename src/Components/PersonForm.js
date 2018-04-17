@@ -21,7 +21,7 @@ class PersonForm extends Component {
     const insuranceAmounts = [10000, 30000, 50000, 100000];
 
     return (
-      <div className="col-lg-4">
+      <div className="col-lg-4" style={{ margin: '0 auto' }}>
         <Panel>
           <Panel.Heading>
             {this.state.fullName || `#${this.props.personNumber} traveller`}
@@ -35,7 +35,8 @@ class PersonForm extends Component {
               placeholder="Enter full name"
               value={this.state.fullName}
               onChange={event =>
-                this.setState({ fullName: event.target.value })}
+                this.setState({ fullName: event.target.value })
+              }
             />
 
             <FieldGroup
@@ -45,7 +46,8 @@ class PersonForm extends Component {
               placeholder="Enter personal ID number"
               value={this.state.personalIDNumber}
               onChange={event =>
-                this.setState({ personalIDNumber: event.target.value })}
+                this.setState({ personalIDNumber: event.target.value })
+              }
             />
 
             <FieldGroup
@@ -55,7 +57,8 @@ class PersonForm extends Component {
               placeholder="Enter passport number"
               value={this.state.passportNumber}
               onChange={event =>
-                this.setState({ passportNumber: event.target.value })}
+                this.setState({ passportNumber: event.target.value })
+              }
             />
 
             <FieldGroup
@@ -74,7 +77,8 @@ class PersonForm extends Component {
               placeholder="Enter persons telephone number"
               value={this.state.telephoneNumber}
               onChange={event =>
-                this.setState({ telephoneNumber: event.target.value })}
+                this.setState({ telephoneNumber: event.target.value })
+              }
             />
             <FormGroup>
               <ControlLabel>
@@ -116,7 +120,8 @@ class PersonForm extends Component {
                   placeholder="Enter sport name"
                   value={this.state.sport}
                   onChange={event =>
-                    this.setState({ sport: event.target.value })}
+                    this.setState({ sport: event.target.value })
+                  }
                 />
               )}
             </FormGroup>
