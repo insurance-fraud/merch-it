@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import {
-  Form,
-  FormGroup,
-  FormControl,
-  InputGroup,
-  Button
-} from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { DateRangePicker } from 'react-dates';
-import moment from 'moment';
 
 import FieldGroup from './FieldGroup';
 import PersonForm from './PersonForm';
