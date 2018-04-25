@@ -8,7 +8,7 @@ import { postAttemptPayment } from '../Services/payments/actions';
 import FieldGroup from './FieldGroup';
 import PersonForm from './PersonForm';
 
-class InsuranceForm extends Component {
+export class InsuranceForm extends Component {
   constructor() {
     super();
 
