@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 import { DateRangePicker } from 'react-dates';
 
@@ -15,7 +16,7 @@ class InsuranceForm extends Component {
       to: null,
       region: '',
       totalNumberOfPersons: 1,
-      numberOfPersons: null
+      numberOfPersons: undefined
     };
 
     this.handleNumberOfPersonsChange = this.handleNumberOfPersonsChange.bind(
@@ -90,10 +91,21 @@ class InsuranceForm extends Component {
         </div>
 
         <div className="container">
-          <Button bsStyle="success">Checkout</Button>
+          <Button bsStyle="success" onClick={this.submit}>
+            Checkout
+          </Button>
         </div>
       </div>
     );
+  }
+
+  submit() {
+    axios
+      .post('http://boxbox:3001/payments/attempt_payment', {
+        payment: { email: 'nikolaseap@gmail.com', amount: 1000 }
+      })
+      .then(resp => console.log(resp))
+      .catch(resp => console.log(resp));
   }
 }
 
