@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import axios from 'axios';
+import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import { DateRangePicker } from 'react-dates';
+import { postAttemptPayment } from '../Services/payments/actions';
 
 import FieldGroup from './FieldGroup';
 import PersonForm from './PersonForm';
@@ -91,22 +92,20 @@ class InsuranceForm extends Component {
         </div>
 
         <div className="container">
-          <Button bsStyle="success" onClick={this.submit}>
+          <Button bsStyle="success" onClick={this.props.attemptPayment}>
             Checkout
           </Button>
         </div>
       </div>
     );
   }
-
-  submit() {
-    axios
-      .post('http://boxbox:3001/payments/attempt_payment', {
-        payment: { email: 'nikolaseap@gmail.com', amount: 1000 }
-      })
-      .then(resp => console.log(resp))
-      .catch(resp => console.log(resp));
-  }
 }
 
-export default InsuranceForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    attemptPayment: () =>
+      dispatch(postAttemptPayment('nikolaseap@gmail.com', 10000))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(InsuranceForm);
