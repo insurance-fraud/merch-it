@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import { DateRangePicker } from 'react-dates';
+import { postAttemptPayment } from '../Services/payments/actions';
 
 import FieldGroup from './FieldGroup';
 import PersonForm from './PersonForm';
 
-class InsuranceForm extends Component {
+export class InsuranceForm extends Component {
   constructor() {
     super();
 
@@ -15,7 +17,7 @@ class InsuranceForm extends Component {
       to: null,
       region: '',
       totalNumberOfPersons: 1,
-      numberOfPersons: null
+      numberOfPersons: undefined
     };
 
     this.handleNumberOfPersonsChange = this.handleNumberOfPersonsChange.bind(
@@ -90,11 +92,20 @@ class InsuranceForm extends Component {
         </div>
 
         <div className="container">
-          <Button bsStyle="success">Checkout</Button>
+          <Button bsStyle="success" onClick={this.props.attemptPayment}>
+            Checkout
+          </Button>
         </div>
       </div>
     );
   }
 }
 
-export default InsuranceForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    attemptPayment: () =>
+      dispatch(postAttemptPayment('nikolaseap@gmail.com', 10000))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(InsuranceForm);

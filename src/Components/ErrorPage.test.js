@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { InsuranceForm } from './InsuranceForm';
+import ErrorPage from './Home';
 
-describe('InsuranceForm', () => {
+describe('ErrorPage', () => {
   it('renders without crashing', () => {
-    const component = shallow(<InsuranceForm />);
+    const component = shallow(<ErrorPage />);
     expect(component).toBeDefined();
   });
 });
