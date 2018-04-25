@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import { shallow, mount } from 'enzyme';
 import InsuranceForm from './Components/InsuranceForm';
+import { history } from './store';
 
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
@@ -26,7 +27,9 @@ describe('App', () => {
     const store = mockStore({});
     const component = mount(
       <Provider store={store}>
-        <App />
+        <ConnectedRouter history={history}>
+          <App />
+        </ConnectedRouter>
       </Provider>
     );
 
