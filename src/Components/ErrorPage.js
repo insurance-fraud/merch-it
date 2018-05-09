@@ -8,7 +8,7 @@ class ErrorPage extends Component {
 
     return (
       <div>
-        <p>There's been an error</p>
+        <p>{"There's been an error"}</p>
 
         <div>
           {errors && errors.map((error, index) => <p key={index}>{error}</p>)}
