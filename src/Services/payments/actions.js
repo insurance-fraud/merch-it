@@ -12,10 +12,10 @@ const attemptPaymentSuccess = (email, amount) => {
   };
 };
 
-const attemptPaymentFail = error => {
+const attemptPaymentFail = errors => {
   return {
     type: ATTEMPT_PAYMENT_FAIL,
-    error
+    errors
   };
 };
 
@@ -33,11 +33,15 @@ export const postAttemptPayment = (email, amount) => {
         dispatch(push('/success'));
         dispatch(attemptPaymentSuccess(payment));
       })
-      .catch(resp => {
-        console.log(resp);
+      .catch(({ response }) => {
+        const data = response.data;
+        console.log(response);
+        console.log(data);
+
+        const errors = data.errors;
 
         dispatch(push('/error'));
-        dispatch(attemptPaymentFail(resp.data));
+        dispatch(attemptPaymentFail(errors));
       });
   };
 };
