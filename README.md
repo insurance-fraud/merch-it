@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/insurance-fraud/merch-it.svg?branch=master)](https://travis-ci.com/insurance-fraud/merch-it)
+[![Build Status](https://semaphoreci.com/api/v1/insurance-fraud/merch-it/branches/show-errors/badge.svg)](https://semaphoreci.com/insurance-fraud/merch-it)
 
 # merch-it
 
