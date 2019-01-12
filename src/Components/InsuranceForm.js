@@ -1,111 +1,85 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
-import { connect } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
-import { DateRangePicker } from 'react-dates';
-import { postAttemptPayment } from '../Services/payments/actions';
 
 import FieldGroup from './FieldGroup';
-import PersonForm from './PersonForm';
 
 export class InsuranceForm extends Component {
-  constructor() {
-    super();
+  state = { email: '', amount: 0 };
 
-    this.state = {
-      from: null,
-      to: null,
-      region: '',
-      totalNumberOfPersons: 1,
-      numberOfPersons: undefined
-    };
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
-    this.handleNumberOfPersonsChange = this.handleNumberOfPersonsChange.bind(
-      this
-    );
-  }
+  checkout = event => {
+    event.preventDefault();
 
-  handleNumberOfPersonsChange(event) {
-    let value = event.target.value;
-    let totalNumberOfPersons = 0;
+    const { email, amount } = this.state;
 
-    if (value < 0 || value > 20) {
-      value = 0;
-    }
-
-    if (value === '') {
-      totalNumberOfPersons = 1;
-    } else {
-      totalNumberOfPersons = parseInt(value, 0) + 1;
-    }
-
-    this.setState({
-      numberOfPersons: value,
-      totalNumberOfPersons: totalNumberOfPersons
-    });
-  }
+    fetch('http://localhost:3001/payments/attempt_payment', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email,
+        amount
+      })
+    })
+      .then(response => response.json())
+      .then(response => (window.location.href = response.payment_url));
+  };
 
   render() {
     return (
-      <div>
-        <Form inline>
-          <DateRangePicker
-            startDate={this.state.from}
-            startDateId={'insurance-start-date'}
-            endDate={this.state.to}
-            endDateId={'insurance-end-date'}
-            onDatesChange={({ startDate, endDate }) =>
-              this.setState({ from: startDate, to: endDate })
-            }
-            focusedInput={this.state.focusedInput}
-            onFocusChange={focusedInput => this.setState({ focusedInput })}
-          />
-        </Form>
+      <Form>
+        <FieldGroup
+          id="region"
+          type="text"
+          label="Email"
+          name="email"
+          placeholder="Enter email"
+          value={this.state.email}
+          onChange={this.handleChange}
+        />
+
+        <div className="flexbox">
+          <label className="insurance">
+            <input
+              name="amount"
+              type="radio"
+              value="10000"
+              onChange={this.handleChange}
+            />{' '}
+            $10 000 - Basic
+          </label>
+          <label className="insurance">
+            <input
+              name="amount"
+              type="radio"
+              value="20000"
+              onChange={this.handleChange}
+            />{' '}
+            $20 000 - Journeyman
+          </label>
+          <label className="insurance">
+            <input
+              name="amount"
+              type="radio"
+              value="40000"
+              onChange={this.handleChange}
+            />{' '}
+            $40 000 - Pro
+          </label>
+        </div>
+
         <br />
-
-        <Form>
-          <FieldGroup
-            id="region"
-            type="text"
-            label="Region you're visiting"
-            placeholder="Enter region name"
-            value={this.state.region}
-            onChange={event => this.setState({ region: event.target.value })}
-          />
-
-          <FieldGroup
-            id="numberOfPersons"
-            type="number"
-            label="Number of persons travelling with you"
-            placeholder="Enter number of persons travelling with you"
-            value={this.state.numberOfPersons}
-            onChange={this.handleNumberOfPersonsChange}
-          />
-        </Form>
-
-        <h3>Information about travellers</h3>
-
-        <div className="col-lg-12">
-          {_.range(this.state.totalNumberOfPersons).map(key => (
-            <PersonForm key={key} personNumber={key} />
-          ))}
-        </div>
-
-        <div className="container">
-          <Button bsStyle="success" onClick={this.props.attemptPayment}>
-            Checkout
-          </Button>
-        </div>
-      </div>
+        <Button type="submit" bsStyle="success" onClick={this.checkout}>
+          Checkout
+        </Button>
+      </Form>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    attemptPayment: () =>
-      dispatch(postAttemptPayment('nikolaseap@gmail.com', 10000))
-  };
-};
-
-export default connect(null, mapDispatchToProps)(InsuranceForm);
+export default InsuranceForm;

@@ -4,6 +4,34 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.insurance {
+  height: 200px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px #ccc solid;
+  border-radius: 4px;
+  margin: 0 5px 0 5px;
+  transition: border 0.5s ease;
+}
+
+.insurance:hover {
+  border: 3px #ccc solid;
+}
+
+.flexbox {
+  display: flex;
+}
+
+input[type='radio'] {
+  margin: 0 5px 0 0 !important;
 }

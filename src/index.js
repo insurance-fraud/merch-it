@@ -11,9 +11,6 @@ import store, { history } from './store';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 
-console.log(Provider);
-console.log(ConnectedRouter);
-
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
