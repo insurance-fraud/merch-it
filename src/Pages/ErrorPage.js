@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 class ErrorPage extends Component {
   render() {
@@ -18,10 +17,4 @@ class ErrorPage extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    errors: state.payment.errors
-  };
-};
-
-export default connect(mapStateToProps)(ErrorPage);
+export default ErrorPage;
