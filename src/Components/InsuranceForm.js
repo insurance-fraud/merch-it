@@ -1,13 +1,39 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, FormGroup, HelpBlock } from 'react-bootstrap';
 
 import FieldGroup from './FieldGroup';
 
 export class InsuranceForm extends Component {
-  state = { email: '', amount: 0 };
+  state = {
+    email: '',
+    amount: 0,
+    emailValid: false,
+    amountValid: false,
+    validationErrors: { email: '', amount: '' }
+  };
 
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState(
+      { [event.target.name]: event.target.value },
+      this.validateForm
+    );
+  };
+
+  validateForm = () => {
+    let {
+      email,
+      amount,
+      emailValid,
+      amountValid,
+      validationErrors
+    } = this.state;
+
+    emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+    validationErrors.email = emailValid ? '' : ' is invalid';
+    amountValid = amount !== 0;
+    validationErrors.amount = amountValid ? '' : ' is invalid';
+
+    this.setState({ emailValid, amountValid, validationErrors });
   };
 
   checkout = event => {
@@ -22,8 +48,12 @@ export class InsuranceForm extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        email,
-        amount
+        payment: {
+          email,
+          amount
+        },
+        merchant_id: process.env.REACT_APP_MERCHANT_ID,
+        merchant_password: process.env.REACT_APP_MERCHANT_PASSWORD
       })
     })
       .then(response => response.json())
@@ -35,15 +65,19 @@ export class InsuranceForm extends Component {
   };
 
   render() {
+    const { email, emailValid, amountValid } = this.state;
+
     return (
       <Form>
         <FieldGroup
           id="region"
-          type="text"
+          type="email"
           label="Email"
           name="email"
           placeholder="Enter email"
-          value={this.state.email}
+          validationState={emailValid ? 'success' : 'error'}
+          help={emailValid ? '' : 'Email is invalid'}
+          value={email}
           onChange={this.handleChange}
         />
 
@@ -77,10 +111,19 @@ export class InsuranceForm extends Component {
           </label>
         </div>
 
+        {!amountValid && (
+          <FormGroup validationState="error">
+            <HelpBlock>Please select Insurance plan</HelpBlock>
+          </FormGroup>
+        )}
+
         <br />
-        <Button type="submit" bsStyle="success" onClick={this.checkout}>
-          Checkout
-        </Button>
+        {emailValid &&
+          amountValid && (
+            <Button type="submit" bsStyle="success" onClick={this.checkout}>
+              Checkout
+            </Button>
+          )}
       </Form>
     );
   }
