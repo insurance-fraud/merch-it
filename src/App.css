@@ -1,3 +1,19 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+.jumbotron {
+  height: 100%;
+  width: 100%;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -21,7 +37,7 @@
   border: 1px #ccc solid;
   border-radius: 4px;
   margin: 0 5px 0 5px;
-  transition: border 0.5s ease;
+  transition: border 0.1s ease;
 }
 
 .insurance:hover {
@@ -30,6 +46,7 @@
 
 .flexbox {
   display: flex;
+  justify-content: space-between;
 }
 
 input[type='radio'] {

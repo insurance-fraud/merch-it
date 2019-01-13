@@ -12,26 +12,24 @@ import FailPage from './Pages/FailPage';
 class App extends Component {
   render() {
     return (
-      <div className="container">
-        <Jumbotron>
-          <Grid>
-            <header>
-              <img src={logo} className="App-logo" alt="logo" />
-              <h1>Welcome to merch-it</h1>
-            </header>
-            <p>Insurances for the wandering travelers.</p>
+      <Jumbotron>
+        <Grid>
+          <header>
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1>Welcome to merch-it</h1>
+          </header>
+          <p>Insurances for the wandering travelers.</p>
 
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/error" component={ErrorPage} />
-              <Route exact path="/success" component={SuccessPage} />
-              <Route exact path="/fail" component={FailPage} />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/error" component={ErrorPage} />
+            <Route exact path="/success" component={SuccessPage} />
+            <Route exact path="/fail" component={FailPage} />
 
-              <Route path="*" component={Home} />
-            </Switch>
-          </Grid>
-        </Jumbotron>
-      </div>
+            <Route path="*" component={Home} />
+          </Switch>
+        </Grid>
+      </Jumbotron>
     );
   }
 }

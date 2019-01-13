@@ -2,7 +2,15 @@ import React, { Component } from 'react';
 
 class SuccessPage extends Component {
   render() {
-    return <h1>Congrats, you've bought insurance from us!</h1>;
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get('email');
+
+    return (
+      <div>
+        <h1>Congrats, you've bought insurance from us!</h1>
+        <p>We've sent an email to {email} with a receipt</p>
+      </div>
+    );
   }
 }
 
