@@ -27,7 +27,11 @@ export class InsuranceForm extends Component {
       })
     })
       .then(response => response.json())
-      .then(response => (window.location.href = response.payment_url));
+      .then(response => {
+        window.location.href = `${response.payment_url}?id=${
+          response.payment_id
+        }`;
+      });
   };
 
   render() {
