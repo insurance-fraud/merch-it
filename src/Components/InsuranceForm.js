@@ -78,6 +78,7 @@ export class InsuranceForm extends Component {
           validationState={emailValid ? 'success' : 'error'}
           help={emailValid ? '' : 'Email is invalid'}
           value={email}
+          data-cy="email"
           onChange={this.handleChange}
         />
 
@@ -87,6 +88,7 @@ export class InsuranceForm extends Component {
               name="amount"
               type="radio"
               value="10000"
+              data-cy="10000"
               onChange={this.handleChange}
             />{' '}
             $10 000 - Basic
@@ -96,6 +98,7 @@ export class InsuranceForm extends Component {
               name="amount"
               type="radio"
               value="20000"
+              data-cy="20000"
               onChange={this.handleChange}
             />{' '}
             $20 000 - Journeyman
@@ -105,6 +108,7 @@ export class InsuranceForm extends Component {
               name="amount"
               type="radio"
               value="40000"
+              data-cy="40000"
               onChange={this.handleChange}
             />{' '}
             $40 000 - Pro
@@ -118,12 +122,16 @@ export class InsuranceForm extends Component {
         )}
 
         <br />
-        {emailValid &&
-          amountValid && (
-            <Button type="submit" bsStyle="success" onClick={this.checkout}>
-              Checkout
-            </Button>
-          )}
+        {emailValid && amountValid && (
+          <Button
+            type="submit"
+            bsStyle="success"
+            data-cy="submit"
+            onClick={this.checkout}
+          >
+            Checkout
+          </Button>
+        )}
       </Form>
     );
   }
