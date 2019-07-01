@@ -6,7 +6,7 @@ class SuccessPage extends Component {
     const email = urlParams.get('email');
 
     return (
-      <div>
+      <div data-cy="successBox">
         <h1>Congrats, you've bought insurance from us!</h1>
         <p>We've sent an email to {email} with a receipt</p>
       </div>

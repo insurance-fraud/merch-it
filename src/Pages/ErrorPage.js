@@ -9,7 +9,7 @@ class ErrorPage extends Component {
       <div>
         <p>{"There's been an error"}</p>
 
-        <div>
+        <div data-cy="errorBox">
           {errors && errors.map((error, index) => <p key={index}>{error}</p>)}
         </div>
       </div>
